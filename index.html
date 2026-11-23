@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Hugo Leroux · Chef de projet AMOA</title>
+  <meta name="description" content="Portfolio de Hugo Leroux : AMOA, PMO et prototypage rapide grâce à l'IA, à l'EM Normandie." />
+  <meta name="theme-color" content="#ED1C24" />
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+
+  <!-- Thème appliqué avant l'affichage pour éviter le flash -->
+  <script>
+    try {
+      var t = localStorage.getItem("theme");
+      if (t === "dark" || t === "light") document.documentElement.setAttribute("data-theme", t);
+    } catch (e) {}
+  </script>
+
+  <!-- Polices : graisses limitées pour la performance -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="assets/style.css" />
+</head>
+<body>
+  <a class="skip-link" id="skipLink" href="#main">Aller au contenu</a>
+
+  <div class="progress" aria-hidden="true"><span class="progress__bar"></span></div>
+  <div class="cursor" aria-hidden="true"><span class="cursor__dot"></span><span class="cursor__ring"></span></div>
+
+  <!-- ================= HEADER ================= -->
+  <header class="header" id="header">
+    <a class="header__brand" href="#top" aria-label="Retour en haut de page">
+      <img src="assets/logo-em-normandie.png" alt="EM Normandie Business School" width="40" height="41" />
+      <span class="header__name" data-content="meta.name"></span>
+    </a>
+
+    <nav class="header__nav" id="headerNav" aria-label="Navigation principale">
+      <ul class="nav" id="nav"></ul>
+    </nav>
+
+    <button class="lang-toggle" id="langToggle" type="button"></button>
+
+    <button class="theme-toggle" id="themeToggle" type="button" aria-label="Activer le mode sombre" aria-pressed="false">
+      <span class="theme-toggle__track"><span class="theme-toggle__thumb"></span></span>
+    </button>
+
+    <button class="burger" id="burger" type="button" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="headerNav">
+      <span></span><span></span>
+    </button>
+  </header>
+
+  <main id="main">
+    <!-- ================= 1. HERO ================= -->
+    <section class="hero" id="top" aria-labelledby="hero-title">
+      <div class="hero__bg" aria-hidden="true">
+        <span class="blob blob--red" data-parallax="0.15"></span>
+        <span class="blob blob--blue" data-parallax="-0.1"></span>
+        <span class="blob blob--soft" data-parallax="0.25"></span>
+        <span class="hero__grid"></span>
+      </div>
+
+      <div class="hero__inner">
+        <p class="hero__eyebrow intro-item" data-content="hero.eyebrow"></p>
+        <h1 class="hero__title intro-item" id="hero-title">
+          <span class="hero__intro" data-content="hero.intro"></span>
+          <span class="hero__typed-wrap"><span class="hero__typed" id="typed"></span><span class="hero__caret" aria-hidden="true"></span></span>
+          <span class="sr-only" id="rolesSr"></span>
+        </h1>
+        <p class="hero__tagline intro-item" data-content="hero.tagline"></p>
+        <div class="hero__ctas intro-item">
+          <a class="btn btn--primary magnetic" id="ctaPrimary"><span></span></a>
+          <a class="btn btn--ghost magnetic" id="ctaSecondary"><span></span></a>
+        </div>
+      </div>
+
+      <a class="hero__scroll" href="#chiffres">
+        <span class="hero__scroll-line" aria-hidden="true"></span>
+        <span data-content="hero.scrollHint"></span>
+      </a>
+    </section>
+
+    <!-- ================= 2. CHIFFRES CLÉS ================= -->
+    <section class="section section--tight" id="chiffres" aria-label="Chiffres clés">
+      <div class="container"><ul class="stats" id="stats"></ul></div>
+    </section>
+
+    <!-- ================= 3. MON RÔLE ================= -->
+    <section class="section" id="role" aria-labelledby="role-title">
+      <div class="container role" id="roleContent"></div>
+    </section>
+
+    <!-- ================= 4. PROJETS ================= -->
+    <section class="section section--alt" id="projets" aria-labelledby="projets-title">
+      <div class="container">
+        <header class="section__head reveal">
+          <p class="kicker" data-content="projectsSection.kicker"></p>
+          <h2 id="projets-title" data-content="projectsSection.title"></h2>
+        </header>
+        <div class="filters reveal" id="filters" role="group" aria-label="Filtrer les projets"></div>
+        <ul class="bento" id="bento" aria-live="polite"></ul>
+      </div>
+    </section>
+
+    <!-- ================= 5. MÉTHODE ================= -->
+    <section class="section" id="methode" aria-labelledby="methode-title">
+      <div class="container">
+        <header class="section__head reveal">
+          <p class="kicker" data-content="method.kicker"></p>
+          <h2 id="methode-title" data-content="method.title"></h2>
+        </header>
+        <ol class="method" id="method"></ol>
+      </div>
+    </section>
+
+    <!-- ================= 6. COMPÉTENCES ================= -->
+    <section class="section section--alt" id="competences" aria-labelledby="competences-title">
+      <div class="container">
+        <header class="section__head reveal">
+          <p class="kicker" data-content="skills.kicker"></p>
+          <h2 id="competences-title" data-content="skills.title"></h2>
+        </header>
+        <div class="skills" id="skills"></div>
+        <h3 class="tools-title reveal" data-content="skills.toolsTitle"></h3>
+        <ul class="chips reveal" id="tools"></ul>
+      </div>
+    </section>
+
+    <!-- ================= 7. VIBE CODING ================= -->
+    <section class="section section--compact" id="vibe-coding" aria-labelledby="vibe-title">
+      <div class="container">
+        <div class="vibe">
+          <div class="vibe__intro reveal">
+            <p class="kicker" data-content="vibe.kicker"></p>
+            <h2 id="vibe-title" data-content="vibe.title"></h2>
+            <p class="lead" data-content="vibe.lead"></p>
+            <ol class="vibe__steps" id="vibeSteps"></ol>
+          </div>
+          <figure class="code reveal">
+            <figcaption class="code__bar"><span class="code__dots" aria-hidden="true"><i></i><i></i><i></i></span><span data-content="vibe.promptLabel"></span></figcaption>
+            <pre><code id="promptCode"></code></pre>
+          </figure>
+        </div>
+
+        <h3 class="sub-title reveal" data-content="vibe.toolsTitle"></h3>
+        <ul class="built" id="built"></ul>
+
+        <!-- Simulateur interactif -->
+        <div class="sim reveal" id="sim">
+          <div class="sim__head">
+            <h3 class="sim__title" data-content="vibe.sim.title"></h3>
+            <p class="sim__intro" data-content="vibe.sim.intro"></p>
+          </div>
+
+          <div class="sim__grid">
+            <!-- Choix -->
+            <form class="sim__form" id="simForm">
+              <fieldset>
+                <legend><span class="sim__badge">1</span><span data-content="vibe.sim.serviceLabel"></span></legend>
+                <div class="sim__options" id="simServices"></div>
+              </fieldset>
+              <fieldset>
+                <legend><span class="sim__badge">2</span><span data-content="vibe.sim.painLabel"></span></legend>
+                <div class="sim__options sim__options--col" id="simPains"></div>
+              </fieldset>
+            </form>
+
+            <!-- Résultat -->
+            <div class="sim__out">
+              <article class="sim__card" id="simCard" aria-live="polite"></article>
+
+              <div class="sim__stepper">
+                <div class="sim__track" aria-hidden="true"><span class="sim__track-fill" id="simFill"></span></div>
+                <ol class="sim__tabs" id="simTabs" role="tablist"></ol>
+              </div>
+
+              <div class="sim__panel" id="simPanel" role="tabpanel" aria-live="polite"></div>
+
+              <div class="sim__controls">
+                <button type="button" class="sim__ctrl" id="simPrev" aria-label="Étape précédente">←</button>
+                <button type="button" class="sim__ctrl sim__ctrl--play" id="simPlay"><span id="simPlayLabel"></span></button>
+                <button type="button" class="sim__ctrl" id="simNext" aria-label="Étape suivante">→</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= 8. INTERNATIONAL ================= -->
+    <section class="section section--alt" id="international" aria-labelledby="intl-title">
+      <div class="container">
+        <header class="section__head reveal">
+          <p class="kicker" data-content="international.kicker"></p>
+          <h2 id="intl-title" data-content="international.title"></h2>
+        </header>
+        <div class="intl" id="intl"></div>
+      </div>
+    </section>
+
+    <!-- ================= 9. TIMELINE ================= -->
+    <section class="section" id="parcours" aria-labelledby="parcours-title">
+      <div class="container">
+        <header class="section__head reveal">
+          <p class="kicker" data-content="timeline.kicker"></p>
+          <h2 id="parcours-title" data-content="timeline.title"></h2>
+        </header>
+        <ol class="timeline" id="timeline"><span class="timeline__fill" aria-hidden="true"></span></ol>
+      </div>
+    </section>
+
+    <!-- ================= 10. RETOURS ================= -->
+    <section class="section section--alt" id="retours" aria-labelledby="retours-title">
+      <div class="container feedback">
+        <header class="section__head reveal">
+          <p class="kicker" data-content="feedback.kicker"></p>
+          <h2 id="retours-title" data-content="feedback.title"></h2>
+        </header>
+        <ul class="feedback__domains reveal" id="fbDomains"></ul>
+        <ul class="feedback__words" id="fbWords"></ul>
+      </div>
+    </section>
+
+    <!-- ================= 11. VALEUR DEMAIN ================= -->
+    <section class="section" id="valeur" aria-labelledby="valeur-title">
+      <div class="container">
+        <header class="section__head reveal">
+          <p class="kicker" data-content="value.kicker"></p>
+          <h2 id="valeur-title" data-content="value.title"></h2>
+        </header>
+        <ul class="value" id="value"></ul>
+      </div>
+    </section>
+
+    <!-- ================= 12. CONTACT ================= -->
+    <section class="section contact" id="contact" aria-labelledby="contact-title">
+      <div class="container contact__inner reveal">
+        <p class="kicker" data-content="contact.kicker"></p>
+        <h2 id="contact-title" data-content="contact.title"></h2>
+        <p class="lead" data-content="contact.text"></p>
+        <div class="contact__ctas">
+          <a class="btn btn--primary magnetic" id="mailBtn"><span></span></a>
+          <a class="btn btn--ghost magnetic" id="linkedinBtn" target="_blank" rel="noopener"><span></span></a>
+        </div>
+        <p class="contact__mail" id="mailText"></p>
+      </div>
+    </section>
+  </main>
+
+  <!-- ================= FOOTER ================= -->
+  <footer class="footer">
+    <div class="container footer__inner">
+      <img src="assets/logo-em-normandie.png" alt="EM Normandie Business School" width="36" height="37" loading="lazy" />
+      <p data-content="footer.text"></p>
+      <button class="footer__term" id="termOpen" type="button"><span aria-hidden="true">&gt;_</span> <span data-content="footer.terminalHint"></span></button>
+    </div>
+  </footer>
+
+  <!-- ================= MODALE PROJET ================= -->
+  <dialog class="modal" id="modal" aria-labelledby="modalTitle">
+    <button class="modal__close" id="modalClose" type="button" aria-label="Fermer">×</button>
+    <div id="modalBody"></div>
+  </dialog>
+
+  <!-- ================= TERMINAL (easter egg) ================= -->
+  <dialog class="terminal" id="terminal" aria-label="Terminal">
+    <div class="terminal__bar"><span class="code__dots" aria-hidden="true"><i></i><i></i><i></i></span><span data-content="terminal.title"></span></div>
+    <div class="terminal__out" id="termOut" aria-live="polite"></div>
+    <form class="terminal__form" id="termForm">
+      <label for="termInput" class="terminal__prompt">$</label>
+      <input id="termInput" type="text" autocomplete="off" spellcheck="false" aria-label="Commande" />
+    </form>
+  </dialog>
+
+  <!-- Librairie via CDN : scroll fluide -->
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js" defer></script>
+  <script src="assets/content.js" defer></script>
+  <script src="assets/main.js" defer></script>
+</body>
+</html>
